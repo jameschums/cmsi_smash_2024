@@ -37,9 +37,9 @@
 &             "      High performance computing systems",/,&
 &             "            SMASH Version ",a10/,&
 &             "           written by K. ISHIMURA",/,&
-&             "           edited by J. Robinson Nov fed39",/,&
-&             "           Gfortran lapack mpi fedora 39 linux AMD lenovo ",/,&
-&             "----------- JJR mp2 bits only SMSH 2.3.0--------",/)') version
+&             "           edited by J. Robinson Nov fed42",/,&
+&             "           nvfortran/gfortran lapack mpi fedora 41 linux AMD",/,&
+&             "----------- JJR SMSH 2.3.0--------",/)') version
       endif
       call tstamp(0)
       call parallelinfo
@@ -91,9 +91,9 @@
           write(*,'("  Geometry optimization did not finish with",i3," warning(s)!")')nwarn
           write(*,'(" ============================================================")')
         else
-          write(*,'("smash2.3 Lenovo IdeaPad 5 Pro 16ACH AMD Ryzen 9 5900HX with Radeon Graphics x16")')
-	      write(*,'("smash2.3 NVIDIA Corporation GA107M [GeForce RTX 3050 Mobile] (rev a1) ")')
-	      write(*,'("smash2.3 Your calculation finished with",i3," warning(s) nvfotran AMD Lenovo Fedora39.")')nwarn
+          write(*,'("smash2.3 AMD Ryzen 9 7950X3D (32) @ 5.76 GHz")')
+	      write(*,'("smash2.3 NVIDIA GeForce RTX 4060")')
+	      write(*,'("smash2.3cosmo Your calculation finished with",i3," warning(s) nvfotran AMD")')nwarn
         endif
       endif
 end program main
