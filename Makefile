@@ -1,12 +1,13 @@
 #'C:/Program Files (x86)/Intel/oneAPI/setvars.bat' 21may2024
-#F90 = gfortran -DnoMPI -lm -llapack64 -fallow-argument-mismatch -fPIC -fallow-invalid-boz -frecursive -DILP64
-F90 = nvfortran -DnoMPI -lm -llapack64 -fPIC -stdpar=gpu
-#gfortran  OPT = -fopenmp -fdefault-integer-8 # -fallow-argument-mismatch is needed for gfortran 10
+##F90 = gfortran -DnoMPI -lm -llapack64 -fallow-argument-mismatch -fPIC -fallow-invalid-boz -frecursive -DILP64 -m64 -g
+#F90 = nvfortran -DnoMPI -lm -llapack64 -fPIC -stdpar=gpu 
+##gfortran  OPT = -fopenmp -fdefault-integer-8 # -fallow-argument-mismatch is needed for gfortran 10
 #nvfortran F90  = nvfortran -DnoMPI #nvfortran
-LIB  = -llapack -lblas #nvfortran
-OPT  = -mp -i8 -O3 #nvfortran
 #LIB =-lm  -llapack64 -lblas -lopenblas -fallow-invalid-boz -frecursive # high performance libraries are recommended #gfortran 
 #OPT = -fopenmp -fdefault-integer-8 #gfortran
+F90 = nvfortran -DnoMPI -lm -llapack64 -fPIC  -fast -DILP64 -m64 -g -Wall # -stdpar=gpu -Minfo=accel
+LIB  = -lm -llapack64 -lblas -lopenblas #nvfortran
+OPT  = -mp -i8 -O3 -fast -fast -DILP64 -m64 #nvfortran  -stdpar=gpu -stdpar=gpu -Minfo=accel
 SRC = basis.F90 geom.F90 guess.F90 fileio.F90 int1.F90 machine.F90 main.F90 math.F90 \
 	memory.F90 scf.F90 scflib.F90 int2.F90 int2elec.F90 int2sp.F90 int2spd1.F90 \
 	int2spd2.F90 int2spd3.F90 int2spd4.F90 gradient.F90 rysquad.F90 \
@@ -46,4 +47,4 @@ $(OBJDIR)/%.o : src/%.F90
 $(OBJ): $(addprefix src/,$(MOD))
 
 clean :
-	rm -f $(OBJDIR)/*.mod $(OBJDIR)/*.o bin/smash *.xyz *.chk *.log input.dat* *.out
+	rm -f $(OBJDIR)/*.mod $(OBJDIR)/*.o bin/smash molden.xyz input.dat* *.out 
