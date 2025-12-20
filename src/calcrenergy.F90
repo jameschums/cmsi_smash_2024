@@ -117,6 +117,13 @@
         call writeeigenvector(cmo,energymo)
       endif
 !
+!     jamespcm
+      E = E_elec + E_nuc + E_xc
+      if (pcm_on) then
+        call pcmsolver_get_energy(pcm_context, E_pcm)
+        E = E + E_pcm
+      end if
+!
 ! Calculate Mulliken charge
 !
       call calcrmulliken(dmtrx,smtrx)

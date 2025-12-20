@@ -57,6 +57,11 @@
 !
       call setcharge(mpi_comm)
 !
+! setdetails.F90 calling pcm  - jamespcm
+      if (pcm_on) then
+        call pcmsolver_init(geom, basis, eps, cavity, pcm_context)
+      end if
+!      
       return
 end
 

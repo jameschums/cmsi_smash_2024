@@ -1598,6 +1598,15 @@ end
             endif
         end select
 !
+!       scf.F90 - jamespcm
+        call build_fock_vacuum(F)
+        if (pcm_on) then
+          call pcmsolver_set_density(pcm_context, P)
+          call pcmsolver_compute_reaction_field(pcm_context, V_pcm)
+          F = F + V_pcm
+        end if
+
+!
         if(iter == maxiter) then
           if(master) then
             write(*,'(" SCF did not converge.")')

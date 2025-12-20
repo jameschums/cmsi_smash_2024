@@ -373,6 +373,16 @@
       enddo
 !$OMP end parallel
 !
+!  jamespcm
+! scf.F90
+      call build_fock_vacuum(F)
+      if (pcm_on) then
+        call pcmsolver_set_density(pcm_context, P)
+        call pcmsolver_compute_reaction_field(pcm_context, V_pcm)
+        F = F + V_pcm
+      end if
+
+!
       return
 end
 
